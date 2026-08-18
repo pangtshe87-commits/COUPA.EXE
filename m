@@ -1,0 +1,31 @@
+*** Begin Patch
+*** Add File: .github/workflows/pages.yml
++name: Deploy to GitHub Pages
++on:
++  push:
++    branches:
++      - main
++  workflow_dispatch:
++
++jobs:
++  build-deploy:
++    runs-on: ubuntu-latest
++    steps:
++      - uses: actions/checkout@v4
++      - name: Upload artifact
++        uses: actions/upload-pages-artifact@v1
++        with:
++          path: .
++
++  deploy:
++    needs: build-deploy
++    runs-on: ubuntu-latest
++    steps:
++      - uses: actions/deploy-pages@v1
++
+*** End Patch
+*** Begin Patch
+*** Add File: CNAME
++# Add your custom domain here (one line). Example:
++# example.com
+*** End Patch
